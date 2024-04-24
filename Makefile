@@ -17,7 +17,7 @@ ifdef EDIT_MODE_ON
 	EDIT_MODE_OBJECTS=tty-raw-mode.o read-line.o
 endif
 
-all: git-commit shell
+# all: git-commit shell
 
 lex.yy.o: shell.l 
 	$(LEX) -o lex.yy.cc shell.l
@@ -45,14 +45,14 @@ tty-raw-mode.o: tty-raw-mode.c
 read-line.o: read-line.c
 	$(cc) $(ccFLAGS) $(WARNFLAGS) -c read-line.c
 
-.PHONY: git-commit
-git-commit:
-	git checkout master >> .local.git.out || echo
-	git add *.cc *.hh *.l *.y Makefile >> .local.git.out  || echo
-	git add test-shell/testall.out >> .local.git.out  || echo
-	touch test-shell/testall.out
-	git commit -a -m  \\"`tail -1 test-shell/testall.out`\\" >> .local.git.out || echo
-	git push origin master
+# .PHONY: git-commit
+# git-commit:
+#	git checkout master >> .local.git.out || echo
+#	git add *.cc *.hh *.l *.y Makefile >> .local.git.out  || echo
+#	git add test-shell/testall.out >> .local.git.out  || echo
+#	touch test-shell/testall.out
+#	git commit -a -m  \\"`tail -1 test-shell/testall.out`\\" >> .local.git.out || echo
+#	git push origin master
 
 .PHONY: clean
 clean:
